@@ -1,0 +1,9 @@
+C:\project\git\Camoran.Japper\Camoran.Japper\bin\Debug\netstandard2.0\Camoran.Japper.deps.json
+C:\project\git\Camoran.Japper\Camoran.Japper\bin\Debug\netstandard2.0\Camoran.Japper.dll
+C:\project\git\Camoran.Japper\Camoran.Japper\bin\Debug\netstandard2.0\Camoran.Japper.pdb
+C:\project\git\Camoran.Japper\Camoran.Japper\obj\Debug\netstandard2.0\Camoran.Japper.csproj.CoreCompileInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper\obj\Debug\netstandard2.0\Camoran.Japper.AssemblyInfoInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper\obj\Debug\netstandard2.0\Camoran.Japper.AssemblyInfo.cs
+C:\project\git\Camoran.Japper\Camoran.Japper\obj\Debug\netstandard2.0\Camoran.Japper.dll
+C:\project\git\Camoran.Japper\Camoran.Japper\obj\Debug\netstandard2.0\Camoran.Japper.pdb
+C:\project\git\Camoran.Japper\Camoran.Japper\obj\Debug\netstandard2.0\Camoran.Japper.csprojResolveAssemblyReference.cache

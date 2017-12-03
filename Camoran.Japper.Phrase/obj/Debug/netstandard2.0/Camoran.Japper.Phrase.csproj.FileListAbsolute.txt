@@ -1,0 +1,11 @@
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\bin\Debug\netstandard2.0\Camoran.Japper.Phrase.deps.json
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\bin\Debug\netstandard2.0\Camoran.Japper.Phrase.dll
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\bin\Debug\netstandard2.0\Camoran.Japper.Phrase.pdb
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\obj\Debug\netstandard2.0\Camoran.Japper.Phrase.csproj.CoreCompileInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\obj\Debug\netstandard2.0\Camoran.Japper.Phrase.AssemblyInfoInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\obj\Debug\netstandard2.0\Camoran.Japper.Phrase.AssemblyInfo.cs
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\obj\Debug\netstandard2.0\Camoran.Japper.Phrase.dll
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\obj\Debug\netstandard2.0\Camoran.Japper.Phrase.pdb
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\bin\Debug\netstandard2.0\Camoran.Japper.dll
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\bin\Debug\netstandard2.0\Camoran.Japper.pdb
+C:\project\git\Camoran.Japper\Camoran.Japper.Phrase\obj\Debug\netstandard2.0\Camoran.Japper.Phrase.csprojResolveAssemblyReference.cache

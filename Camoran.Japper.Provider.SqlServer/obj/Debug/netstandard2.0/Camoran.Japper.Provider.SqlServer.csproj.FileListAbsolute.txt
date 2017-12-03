@@ -1,0 +1,9 @@
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\bin\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.deps.json
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\bin\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.dll
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\bin\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.pdb
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\obj\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.csprojResolveAssemblyReference.cache
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\obj\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.csproj.CoreCompileInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\obj\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.AssemblyInfoInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\obj\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.AssemblyInfo.cs
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\obj\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.dll
+C:\project\git\Camoran.Japper\Camoran.Japper.Provider.SqlServer\obj\Debug\netstandard2.0\Camoran.Japper.Provider.SqlServer.pdb
