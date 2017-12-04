@@ -11,7 +11,8 @@ namespace Camoran.Japper
     public interface ISqlPhrase
     {
         string Name { get; }
-        //ISqlPhrase Next { get; }
-        //void SetNext(ISqlPhrase phrase);
+        ISqlPhrase Next { get; }
+        void SetNext(ISqlPhrase phrase);
+        void SetNext(IEnumerable<ISqlPhrase> phrases);
     }
 }

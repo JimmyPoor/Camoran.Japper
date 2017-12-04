@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Camoran.Japper.Phrase
 {
-    class ConditionPhrase
+
+    public class ConditionPhrase:SqlPhrase
     {
+        public string Value;
+        public string Param;
+        public ConditionOperator d
     }
+
 }
