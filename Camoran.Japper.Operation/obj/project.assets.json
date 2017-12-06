@@ -25,6 +25,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "Camoran.Japper/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Camoran.Japper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Camoran.Japper.dll": {}
+        }
       }
     }
   },
@@ -169,10 +179,16 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "Camoran.Japper/1.0.0": {
+      "type": "project",
+      "path": "../Camoran.Japper/Camoran.Japper.csproj",
+      "msbuildProject": "../Camoran.Japper/Camoran.Japper.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "Camoran.Japper >= 1.0.0",
       "NETStandard.Library >= 2.0.0"
     ]
   },
@@ -209,7 +225,11 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\project\\git\\Camoran.Japper\\Camoran.Japper\\Camoran.Japper.csproj": {
+              "projectPath": "C:\\project\\git\\Camoran.Japper\\Camoran.Japper\\Camoran.Japper.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

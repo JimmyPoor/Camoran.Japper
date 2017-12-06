@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Camoran.Japper.Phrase
+namespace Camoran.Japper.Operation
 {
 
     public class WherePhrase : SqlPhrase
     {
-        public string Name => throw new NotImplementedException();
-
         public static bool operator &(WherePhrase left, WherePhrase right)
         {
             return true;

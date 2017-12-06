@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Camoran.Japper.Phrase
+namespace Camoran.Japper.Operation
 {
     public class SqlPhrase : ISqlPhrase
     {

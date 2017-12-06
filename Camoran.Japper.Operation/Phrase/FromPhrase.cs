@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Camoran.Japper.Phrase
+namespace Camoran.Japper.Operation
 {
+
     public class FromPhrase : SqlPhrase
     {
-        public string Name => throw new NotImplementedException();
         public string TableName { get; protected set; }
         public string Alias { get; protected set; }
 
@@ -19,4 +19,5 @@ namespace Camoran.Japper.Phrase
 
         private ITable _table;  
     }
+
 }
