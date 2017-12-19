@@ -12,12 +12,12 @@ namespace Camoran.Japper.Operation
 
         public static bool operator &(WherePhrase left, WherePhrase right)
         {
-            return true;
+            return left & right;
         }
 
         public static bool operator |(WherePhrase left, WherePhrase right)
         {
-            return true;
+            return left | right;
         }
 
     }

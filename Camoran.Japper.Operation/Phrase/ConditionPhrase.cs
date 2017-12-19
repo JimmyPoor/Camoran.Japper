@@ -67,7 +67,6 @@ namespace Camoran.Japper.Operation
 
     }
 
-
     public class AndPhrase : WherePhrase
     {
 
@@ -93,7 +92,6 @@ namespace Camoran.Japper.Operation
         }
 
     }
-
 
     public class OrPhrase : WherePhrase
     {

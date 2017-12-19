@@ -9,7 +9,6 @@ namespace Camoran.Japper.Operation
     {
 
         public string Name { get; protected set; }
-
         public ISqlPhrase Next { get; protected set; }
 
         public SqlPhrase(string name)

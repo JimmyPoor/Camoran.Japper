@@ -11,14 +11,13 @@ namespace Camoran.Japper.Operation
         public string Alias { get; protected set; }
         public string TableName { get; set; }
 
-        public SelectPhrase(string name, string alias,string table)
-            :base(name)
-        {
+        public SelectPhrase(string name, string table)
+           : this(name, table, null) { }
 
-        }
+        public SelectPhrase(string name, string table,string alias)
+            : base(name) { }
 
     }
 
 }
 
-//select a.b , sum(a.c) ,a.d from a 
