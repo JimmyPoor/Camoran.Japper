@@ -7,6 +7,9 @@ namespace Camoran.Japper.Operation
 
     public class WherePhrase : SqlPhrase
     {
+
+        public WherePhrase(string name):base(name) { }
+
         public static bool operator &(WherePhrase left, WherePhrase right)
         {
             return true;
@@ -16,6 +19,7 @@ namespace Camoran.Japper.Operation
         {
             return true;
         }
+
     }
 
 }

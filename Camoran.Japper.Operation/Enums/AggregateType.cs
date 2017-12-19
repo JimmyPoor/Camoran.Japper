@@ -4,7 +4,14 @@ using System.Text;
 
 namespace Camoran.Japper.Operation
 {
-    public class SelectOperation
+
+    public enum AggregateType
     {
+        Count=1,
+        Sum=2,
+        Avg=3,
+        Max=4,
+        Min=5
     }
+
 }

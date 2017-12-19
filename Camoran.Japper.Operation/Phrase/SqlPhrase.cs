@@ -4,20 +4,26 @@ using System.Text;
 
 namespace Camoran.Japper.Operation
 {
-    public class SqlPhrase : ISqlPhrase
+
+    public abstract class SqlPhrase : ISqlPhrase
     {
-        public string Name => throw new NotImplementedException();
 
-        public ISqlPhrase Next => throw new NotImplementedException();
+        public string Name { get; protected set; }
 
-        public void SetNext(ISqlPhrase phrase)
+        public ISqlPhrase Next { get; protected set; }
+
+        public SqlPhrase(string name)
         {
-            throw new NotImplementedException();
+            Name = name;
         }
 
-        public void SetNext(IEnumerable<ISqlPhrase> phrases)
+        public virtual void SetNext(ISqlPhrase phrase)
         {
-            throw new NotImplementedException();
+            if (phrase != null)
+                Next = phrase;
         }
+
     }
+
 }
+

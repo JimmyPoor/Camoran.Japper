@@ -10,9 +10,9 @@ namespace Camoran.Japper.Operation
         public string TableName { get; protected set; }
         public string Alias { get; protected set; }
 
-        public FromPhrase() {}
+        public FromPhrase(string tableName):base(tableName) {}
         
-        public FromPhrase(ITable table)
+        public FromPhrase(ITable table):this(table.TableName)
         {
             this._table = table;
         }
