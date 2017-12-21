@@ -19,5 +19,3 @@ namespace Camoran.Japper.Operation
     }
 
 }
-
-//select a.b , sum(a.c) ,a.d from a 

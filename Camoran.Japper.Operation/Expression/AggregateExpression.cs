@@ -14,22 +14,50 @@ namespace Camoran.Japper.Operation
         //Min():AggregationPhrase
 
 
-        public AggregatePhrase Sum()
+        public AggregatePhrase Sum(SelectPhrase selectPhrase)
         {
-            return null;
+            return new AggregatePhrase(
+                selectPhrase.Name, 
+                selectPhrase.Alias, 
+                selectPhrase.TableName, 
+                AggregateType.Sum);
         }
 
-        //select sum(),a.c  group by a.id
-        public AggregatePhrase Avg()
+        public AggregatePhrase Avg(SelectPhrase selectPhrase)
         {
-            return null;
+            return new AggregatePhrase(
+                selectPhrase.Name,
+                selectPhrase.Alias,
+                selectPhrase.TableName,
+                AggregateType.Avg);
         }
 
+        public AggregatePhrase Count(SelectPhrase selectPhrase)
+        {
+            return new AggregatePhrase(
+                selectPhrase.Name,
+                selectPhrase.Alias,
+                selectPhrase.TableName,
+                AggregateType.Count);
+        }
 
-        #region  [ operator method with value ]
+        public AggregatePhrase Max(SelectPhrase selectPhrase)
+        {
+            return new AggregatePhrase(
+                selectPhrase.Name,
+                selectPhrase.Alias,
+                selectPhrase.TableName,
+                AggregateType.Max);
+        }
 
-        #endregion
-
+        public AggregatePhrase Min(SelectPhrase selectPhrase)
+        {
+            return new AggregatePhrase(
+                selectPhrase.Name,
+                selectPhrase.Alias,
+                selectPhrase.TableName,
+                AggregateType.Min);
+        }
 
     }
 

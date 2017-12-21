@@ -1,14 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7D8D0EC1-568E-486F-91FF-EFAAE41266D7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{F4554D57-F7AD-4AA7-BFAC-C37F1B720EA9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camoran.Japper.Operation", "Camoran.Japper.Operation\Camoran.Japper.Operation.csproj", "{B438F428-B2DC-4D7A-A4F5-01F96CA269DC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camoran.Japper.Provider.SqlServer", "Camoran.Japper.Provider.SqlServer\Camoran.Japper.Provider.SqlServer.csproj", "{84C7361F-874D-4B4A-9C06-9DEF28CB1007}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{AC228123-179F-469E-97F6-E43FEE7F26B3}"
 EndProject
@@ -36,18 +32,6 @@ Global
 		{B438F428-B2DC-4D7A-A4F5-01F96CA269DC}.Release|x64.Build.0 = Release|Any CPU
 		{B438F428-B2DC-4D7A-A4F5-01F96CA269DC}.Release|x86.ActiveCfg = Release|Any CPU
 		{B438F428-B2DC-4D7A-A4F5-01F96CA269DC}.Release|x86.Build.0 = Release|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Debug|x64.Build.0 = Debug|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Debug|x86.Build.0 = Debug|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Release|x64.ActiveCfg = Release|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Release|x64.Build.0 = Release|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Release|x86.ActiveCfg = Release|Any CPU
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007}.Release|x86.Build.0 = Release|Any CPU
 		{862D1321-1B9F-4E75-966B-ED936454CC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{862D1321-1B9F-4E75-966B-ED936454CC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862D1321-1B9F-4E75-966B-ED936454CC22}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -66,7 +50,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B438F428-B2DC-4D7A-A4F5-01F96CA269DC} = {7D8D0EC1-568E-486F-91FF-EFAAE41266D7}
-		{84C7361F-874D-4B4A-9C06-9DEF28CB1007} = {F4554D57-F7AD-4AA7-BFAC-C37F1B720EA9}
 		{862D1321-1B9F-4E75-966B-ED936454CC22} = {7D8D0EC1-568E-486F-91FF-EFAAE41266D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

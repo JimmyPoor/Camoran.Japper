@@ -34,13 +34,4 @@ namespace Camoran.Japper.Operation
 
     }
 
-
-    public class OnPhrase : WherePhrase
-    {
-        public OnPhrase(string name) : base(name)
-        {
-        }
-    }
-
-
 }

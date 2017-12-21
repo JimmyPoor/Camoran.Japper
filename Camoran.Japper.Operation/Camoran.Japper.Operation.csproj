@@ -8,4 +8,9 @@
     <ProjectReference Include="..\Camoran.Japper\Camoran.Japper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Parsers\MySql\" />
+    <Folder Include="Providers\MySql\" />
+  </ItemGroup>
+
 </Project>
