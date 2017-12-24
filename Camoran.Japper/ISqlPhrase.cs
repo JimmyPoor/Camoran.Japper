@@ -14,6 +14,7 @@ namespace Camoran.Japper
         string Name { get; }
         ISqlPhrase Next { get; }
         void SetNext(ISqlPhrase phrase);
+        void SetNext(ISqlPhrase[] phrase);
     }
 
 }

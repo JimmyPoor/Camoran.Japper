@@ -22,6 +22,15 @@ namespace Camoran.Japper.Operation
                 Next = phrase;
         }
 
+        public void SetNext(ISqlPhrase[] phrase)
+        {
+            var i = 0;
+            while (i < phrase.Length - 1)
+            {
+                phrase[i].SetNext(phrase[i + 1]);
+                i++;
+            }
+        }
     }
 
 }

@@ -18,3 +18,5 @@ E:\project\Orm\Camoran.Japper\Camoran.Japper.Operation\obj\Debug\netstandard2.0\
 E:\project\Orm\Camoran.Japper\Camoran.Japper.Operation\obj\Debug\netstandard2.0\Camoran.Japper.Operation.pdb
 E:\project\Orm\Camoran.Japper\Camoran.Japper.Operation\obj\Debug\netstandard2.0\Camoran.Japper.Operation.csproj.CoreCompileInputs.cache
 E:\project\Orm\Camoran.Japper\Camoran.Japper.Operation\obj\Debug\netstandard2.0\Camoran.Japper.Operation.AssemblyInfoInputs.cache
+C:\project\git\Camoran.Japper\Camoran.Japper.Operation\bin\Debug\netstandard2.0\Camoran.Japper.dll
+C:\project\git\Camoran.Japper\Camoran.Japper.Operation\bin\Debug\netstandard2.0\Camoran.Japper.pdb
