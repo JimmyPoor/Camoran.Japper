@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Camoran.Japper.Operation
 {
-    // select(s ,s ,s ,s).from(f).join(f).on(w) .join()....where().group_by()
+    //dapper;
+    //Japper.select(Avg(s) ,s ,s ,s).from(f).join(f,a.b=b.a) .join()....where().group_by()
     public sealed class SelectOperation
     {
 
@@ -25,9 +26,9 @@ namespace Camoran.Japper.Operation
             return this;
         }
 
-        public SelectOperation from(FromPhrase phrase)
+        public SelectOperation from(FromPhrase selectPhrases)
         {
-            _currentList.AddLast(phrase);
+            _currentList.AddLast(selectPhrases);
 
             return null;
         }
@@ -39,53 +40,73 @@ namespace Camoran.Japper.Operation
             return this;
         }
 
-        public SelectOperation join(FromPhrase pharse)
+        public SelectOperation join(FromPhrase pharse, WherePhrase wherePhrase)
         {
-            var joinPhrase= new JoinPhrase(pharse.TableName, JoinType.Inner);
+            var joinPhrase= new JoinPhrase(pharse.TableName, JoinType.Inner, wherePhrase);
             _currentList.AddLast(joinPhrase);
+            _currentList.AddLast(wherePhrase);
 
             return this;
         }
 
-        public SelectOperation on(WherePhrase phrase)
+        public SelectOperation leftjoin(FromPhrase pharse,WherePhrase wherePhrase)
         {
-            _currentList.AddLast(new OnPhrase(phrase.Name) { });
+            var joinPhrase = new JoinPhrase(pharse.TableName, JoinType.Left, wherePhrase);
+            _currentList.AddLast(joinPhrase);
+            _currentList.AddLast(wherePhrase);
 
             return this;
         }
 
-        public SelectOperation leftjoin(FromPhrase pharse)
+        public SelectOperation rightjoin(FromPhrase pharse, WherePhrase wherePhrase)
         {
-            return this;
-        }
+            var joinPhrase = new JoinPhrase(pharse.TableName, JoinType.Right, wherePhrase);
+            _currentList.AddLast(joinPhrase);
+            _currentList.AddLast(wherePhrase);
 
-        public SelectOperation rightjoin(FromPhrase pharse)
-        {
             return this;
         }
 
         public SelectOperation where(WherePhrase phrase)
         {
+            _currentList.AddLast(phrase);
+
             return this;
         }
 
-        public SelectOperation order_by()
+        public SelectOperation order_by(params OrderPhrase[] selectPhrases)
         {
+            foreach (var item in selectPhrases)
+            {
+                _currentList.AddLast(item);
+            }
+
             return this;
         }
 
-        public SelectOperation group_by(AggregatePhrase phrase)
+        public SelectOperation group_by(params SelectPhrase[] selectPhrases)
         {
+            foreach (var item in selectPhrases)
+            {
+                _currentList.AddLast(item);
+            }
+
             return this;
         }
 
         public SelectOperation skip(int skip)
         {
+            var phrase = new SelectPhrase(null, null, null, SelectType.Skip);
+            _currentList.AddLast(phrase);
+
             return this;
         }
 
         public SelectOperation take(int take)
         {
+            var phrase = new SelectPhrase(null, null, null, SelectType.Take);
+            _currentList.AddLast(phrase);
+
             return this;
         }
 
@@ -99,10 +120,6 @@ namespace Camoran.Japper.Operation
 
         public Task<IEnumerable<T>> QueryAsync<T>()
         {
-            //var phraseArray = _currentList.ToArray();
-            //var sql = SelectParser.ParseToSql(phraseArray);
-            //var result = IDbProvider.Query<T>(sql);
-            //return result;
             IEnumerable<T> result = null;
             return Task.FromResult(result);
         }
@@ -113,7 +130,7 @@ namespace Camoran.Japper.Operation
 
         private LinkedList<SqlPhrase> _currentList;
 
-        private ISqlParser SelectParser { get; }
+        private ISqlParser SelectParser { get; private set; }
 
     }
 

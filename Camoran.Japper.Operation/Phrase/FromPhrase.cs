@@ -11,9 +11,9 @@ namespace Camoran.Japper.Operation
         public string TableName { get; protected set; }
         public string Alias { get; protected set; }
 
-        public FromPhrase(string tableName):base(tableName) {}
-        
-        public FromPhrase(ITable table):this(table.TableName)
+        public FromPhrase(string tableName) : base(tableName) { }
+
+        public FromPhrase(ITable table) : this(table.TableName)
         {
             this._table = table;
         }
@@ -26,10 +26,13 @@ namespace Camoran.Japper.Operation
     {
 
         public JoinType JoinType { get; }
+        public WherePhrase WherePhrase { get; }
 
-        public JoinPhrase(string table, JoinType joinType) : base(table)
+        public JoinPhrase(string table, JoinType joinType, WherePhrase wherePhrase)
+            : base(table)
         {
             JoinType = joinType;
+            WherePhrase = wherePhrase;
         }
 
     }

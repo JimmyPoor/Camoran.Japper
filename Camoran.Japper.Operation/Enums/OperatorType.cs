@@ -20,3 +20,38 @@ namespace Camoran.Japper.Operation
     }
 
 }
+
+
+//[Table()]
+//public class A
+//{
+//    [StringColumn]
+//    public string A { get; set; }
+
+//    puc
+//    //public List<StringColumn> B { get; set; }
+
+   
+//}
+ 
+
+//生成: 
+
+//partial class Table A
+//{
+//    public stringCoulmn A { }
+
+//    public stringCoulmn B { }
+//}
+
+//partial class Table A 
+//    {
+//    public List<StringColumn> B { get; set; }
+//    }
+
+
+
+//"insert into A values (1,2,3,45,)"
+
+
+//"select A.b,A.c,A.d from A where b.notIn(1,2,3,45,6)"

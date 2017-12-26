@@ -5,13 +5,13 @@ using System.Text;
 namespace Camoran.Japper.Operation
 {
 
-    public enum AggregateType
+    public enum SelectType
     {
-        Count = 1,
-        Sum = 2,
-        Avg = 3,
-        Max = 4,
-        Min = 5
+        Normal=0,
+        Top =1,
+        Distinct=2,
+        Skip=3,
+        Take=4
     }
 
 }

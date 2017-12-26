@@ -8,14 +8,26 @@ namespace Camoran.Japper.Operation
     public class SelectPhrase : SqlPhrase
     {
 
-        public string Alias { get; protected set; }
-        public string TableName { get; set; }
+        public string Alias { get; }
+        public string TableName { get; }
+        public SelectType SType { get; }
 
         public SelectPhrase(string name, string table)
            : this(name, table, null) { }
 
         public SelectPhrase(string name, string table,string alias)
-            : base(name) { }
+            : this(name,table,alias, SelectType.Normal)
+        {
+           
+        }
+
+        public SelectPhrase(string name, string table, string alias,SelectType selectType)
+           : base(name)
+        {
+            TableName = TableName;
+            Alias = alias;
+            SType = selectType;
+        }
 
     }
 
