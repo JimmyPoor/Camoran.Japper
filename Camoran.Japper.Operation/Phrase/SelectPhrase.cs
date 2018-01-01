@@ -31,5 +31,11 @@ namespace Camoran.Japper.Operation
 
     }
 
+
+    public class GroupPhrase : SelectPhrase
+    {
+        public GroupPhrase(string name,string table) : base(name,table) { }
+    }
+
 }
 

@@ -11,18 +11,20 @@ namespace Camoran.Japper.Operation
     public sealed class SelectOperation
     {
 
-        public SelectOperation()
+        public SelectOperation(IDbProvider provider, ISqlParser parser)
         {
+            _dbProvider = provider;
+            _selectParser = parser;
             _currentList = new LinkedList<SqlPhrase>();
         }
 
         public SelectOperation select(params SelectPhrase[] phrases)
         {
-            foreach(var item in phrases)
+            foreach (var item in phrases)
             {
                 _currentList.AddLast(item);
             }
-           
+
             return this;
         }
 
@@ -33,23 +35,24 @@ namespace Camoran.Japper.Operation
             return null;
         }
 
-        public SelectOperation from(SelectOperation sub)
-        {
-            SubOperation = sub;
+        //TODO:will add later
+        //public SelectOperation from(SelectOperation sub)
+        //{
+        //    SubOperation = sub;
 
-            return this;
-        }
+        //    return this;
+        //}
 
         public SelectOperation join(FromPhrase pharse, WherePhrase wherePhrase)
         {
-            var joinPhrase= new JoinPhrase(pharse.TableName, JoinType.Inner, wherePhrase);
+            var joinPhrase = new JoinPhrase(pharse.TableName, JoinType.Inner, wherePhrase);
             _currentList.AddLast(joinPhrase);
             _currentList.AddLast(wherePhrase);
 
             return this;
         }
 
-        public SelectOperation leftjoin(FromPhrase pharse,WherePhrase wherePhrase)
+        public SelectOperation leftjoin(FromPhrase pharse, WherePhrase wherePhrase)
         {
             var joinPhrase = new JoinPhrase(pharse.TableName, JoinType.Left, wherePhrase);
             _currentList.AddLast(joinPhrase);
@@ -84,7 +87,7 @@ namespace Camoran.Japper.Operation
             return this;
         }
 
-        public SelectOperation group_by(params SelectPhrase[] selectPhrases)
+        public SelectOperation group_by(params GroupPhrase[] selectPhrases)
         {
             foreach (var item in selectPhrases)
             {
@@ -112,9 +115,15 @@ namespace Camoran.Japper.Operation
 
         public IEnumerable<T> Query<T>()
         {
-            var phraseArray = _currentList.ToArray();
-            var sql = SelectParser.ParseToSql(phraseArray);
-            var result = IDbProvider.Query<T>(sql);
+            IEnumerable<T> result = null;
+            if (_currentList.Count > 0)
+            {
+                SetNext();
+                var phraseArray = _currentList.ToArray();
+                var sql = _selectParser.ParseToSql(phraseArray);
+                result = _dbProvider.Query<T>(sql);
+            }
+
             return result;
         }
 
@@ -126,11 +135,20 @@ namespace Camoran.Japper.Operation
 
         public SelectOperation SubOperation { get; private set; }
 
-        public IDbProvider IDbProvider { get; private set; }
+        public IDbProvider _dbProvider { get; private set; }
 
         private LinkedList<SqlPhrase> _currentList;
 
-        private ISqlParser SelectParser { get; private set; }
+        private ISqlParser _selectParser { get; set; }
+
+        private void SetNext()
+        {
+            foreach (var item in _currentList)
+            {
+                if (null != item.Next)
+                    item.SetNext(item.Next);
+            }
+        }
 
     }
 
