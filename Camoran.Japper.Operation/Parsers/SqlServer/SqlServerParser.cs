@@ -8,11 +8,6 @@ namespace Camoran.Japper.Operation.SqlServer
     public class SqlServerSearchParser : ISqlParser
     {
 
-        IList<SelectPhrase> _selectPhrases;
-        IList<WherePhrase> _wherePhrases;
-        IList<JoinPhrase> _joinPhrases;
-        IList<FromPhrase> _fromPhrases;
-        IList<ConditionPhrase> _conditionPhrases;
         static StringBuilder _sb;
         static string _resutStr => _sb.ToString();
 
@@ -21,115 +16,141 @@ namespace Camoran.Japper.Operation.SqlServer
             _sb = new StringBuilder();
         }
 
-        public string ParseToSql(ISqlPhrase[] phrase)
+        public string ParseToSql(ISqlPhrase phrase)
         {
-            foreach (var item in phrase)
+            _sb.Append(SQL_SERVER_KEYWORD.Select);
+
+            while (null != phrase)
             {
-                AddToList(item);
+                if (phrase is SelectPhrase)
+                {
+                    ParseSelectPhrase(phrase as SelectPhrase);
+                }
+                else if (phrase is FromPhrase)
+                {
+                    ParseFromPhrase(phrase as FromPhrase);
+                }
+                else if (phrase is WherePhrase)
+                {
+                    ParseWherePhrase(phrase as WherePhrase);
+                }
+
+                phrase = phrase.Next;
             }
-
-            ParseSelectPhrase(_selectPhrases);
-
-            ParseFromPhrase(_fromPhrases);
-
-            ParseWherePhrase(_wherePhrases);
 
             return _sb.ToString();
         }
 
-        private void ParseSelectPhrase(IList<SelectPhrase> pharse)
+        private void ParseSelectPhrase(SelectPhrase pharse)
         {
-            // select a.c,a.b,max(a.d),min(),average()
-            _sb.Append(SQL_SERVER_KEYWORD.Select);
-            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
-
-            foreach (var item in pharse)
+            if (pharse is AggregatePhrase)
             {
-                if (item is AggregatePhrase)
-                {
-                    _sb.Append((item as AggregatePhrase).AggregateType);
-                }
-
-                _sb.Append(SQL_SERVER_KEYWORD.LP);
-                _sb.Append(SQL_SERVER_KEYWORD.LPS);
-                _sb.Append(item.TableName);
-                _sb.Append(SQL_SERVER_KEYWORD.Dot);
-                _sb.Append(item.Name);
-                _sb.Append(SQL_SERVER_KEYWORD.RPS);
-                _sb.Append(SQL_SERVER_KEYWORD.RP);
-
-                if (!string.IsNullOrEmpty(item.Alias))
-                {
-                    _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
-                    _sb.Append(SQL_SERVER_KEYWORD.Alias);
-                }
-
-                var splitChar = (item.Next is FromPhrase) ? SQL_SERVER_KEYWORD.WhiteSpace : SQL_SERVER_KEYWORD.Comma;
-                _sb.Append(splitChar);
+                _sb.Append((pharse as AggregatePhrase).AggregateType);
             }
 
-        }
+            _sb.Append(SQL_SERVER_KEYWORD.LP);
+            _sb.Append(SQL_SERVER_KEYWORD.LPS);
+            _sb.Append(pharse.TableName);
+            _sb.Append(SQL_SERVER_KEYWORD.Dot);
+            _sb.Append(pharse.Name);
+            _sb.Append(SQL_SERVER_KEYWORD.RPS);
+            _sb.Append(SQL_SERVER_KEYWORD.RP);
 
-        private void ParseFromPhrase(IList<FromPhrase> pharse)
-        {
-            _sb.Append(SQL_SERVER_KEYWORD.From);
-            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
-
-            foreach (var item in pharse)
+            if (!string.IsNullOrEmpty(pharse.Alias))
             {
-                _sb.Append(item.TableName);
                 _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
-
-                if (item is JoinPhrase)
-                {
-                    var joinPhrase = item as JoinPhrase;
-                    //_sb.Append((item as JoinType).);
-                    _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
-                    _sb.Append(SQL_SERVER_KEYWORD.On);
-                   // _sb.Append();
-                }
+                _sb.Append(SQL_SERVER_KEYWORD.Alias);
             }
-            //select * from a,b join b on a.1 = b.1
+
+            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
+            var splitChar = (pharse.Next is FromPhrase) ? SQL_SERVER_KEYWORD.WhiteSpace : SQL_SERVER_KEYWORD.Comma;
+            _sb.Append(splitChar);
         }
 
-        private void ParseWherePhrase(IList<WherePhrase> pharse)
+        private void ParseFromPhrase(FromPhrase pharse)
         {
+            if (pharse is JoinPhrase)
+            {
+                var joinPhrase = pharse as JoinPhrase;
+
+                _sb.Append(SQL_SERVER_KEYWORD.Join);
+                _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
+                _sb.Append(pharse.TableName);
+                _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
+                _sb.Append(SQL_SERVER_KEYWORD.On);
+            }
+            else
+            {
+                _sb.Append(SQL_SERVER_KEYWORD.From);
+                _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
+                _sb.Append(pharse.TableName);
+            }
+
+            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
         }
 
-        private void AddToList(ISqlPhrase phrase)
+        private void ParseWherePhrase(WherePhrase phrase)
         {
-            if (phrase is SelectPhrase)
+            var phraseIsOnlyWherePhrase = !(phrase is AndPhrase) && !(phrase is OrPhrase) && !(phrase is ConditionPhrase);
+            if (phraseIsOnlyWherePhrase)
             {
-                _selectPhrases.Add(phrase as SelectPhrase);
+                _sb.Append(SQL_SERVER_KEYWORD.Where);
             }
-            else if (phrase is JoinPhrase)
+            else if (phrase is AndPhrase)
             {
-                _joinPhrases.Add(phrase as JoinPhrase);
+                _sb.Append(SQL_SERVER_KEYWORD.And);
             }
-            else if (phrase is FromPhrase)
+            else if (phrase is OrPhrase)
             {
-                _fromPhrases.Add(phrase as FromPhrase);
+                _sb.Append(SQL_SERVER_KEYWORD.Or);
             }
             else if (phrase is ConditionPhrase)
             {
-                _wherePhrases.Add(phrase as ConditionPhrase);
-            }
-            else if (phrase is WherePhrase)
-            {
-                _wherePhrases.Add(phrase as WherePhrase);
+                var conditionPhrase = phrase as ConditionPhrase;
+                ParseConditionPhrase(conditionPhrase);
             }
 
+            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
         }
+
+        private void ParseConditionPhrase(ConditionPhrase Phrase)
+        {
+            _sb.Append(Phrase.Param);
+            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
+
+            switch (Phrase.OperatorType)
+            {
+                case OperatorType.Equal: _sb.Append(SQL_SERVER_KEYWORD.Equal); break;
+                case OperatorType.NotEqual: _sb.Append(SQL_SERVER_KEYWORD.NotEqual); break;
+                case OperatorType.In: _sb.Append(SQL_SERVER_KEYWORD.Equal); break;
+                case OperatorType.NotIn: _sb.Append(SQL_SERVER_KEYWORD.Equal); break;
+                case OperatorType.Between: _sb.Append(SQL_SERVER_KEYWORD.Equal); break;
+                case OperatorType.NotBetween: _sb.Append(SQL_SERVER_KEYWORD.Equal); break;
+                case OperatorType.LessThan: _sb.Append(SQL_SERVER_KEYWORD.LessThan); break;
+                case OperatorType.LessThanOrEqual: _sb.Append(SQL_SERVER_KEYWORD.LessThanOrEqual); break;
+                case OperatorType.MoreThan: _sb.Append(SQL_SERVER_KEYWORD.MoreThan); break;
+                case OperatorType.MoreThanOrEqual: _sb.Append(SQL_SERVER_KEYWORD.MoreThanOrEqual); break;
+            }
+
+            _sb.Append(Phrase.Value);
+            _sb.Append(SQL_SERVER_KEYWORD.WhiteSpace);
+        }
+
+        private void ParseOrderPhrase(OrderPhrase phrase) { }
+
+        private void ParseGroupPhrase(GroupPhrase phrase) { }
 
     }
 
+
     public class SqlServerCommandParser : ISqlParser
     {
-        public string ParseToSql(ISqlPhrase[] phrase)
+        public string ParseToSql(ISqlPhrase phrase)
         {
             throw new NotImplementedException();
         }
     }
+
 
     public static class SQL_SERVER_KEYWORD
     {
@@ -144,6 +165,20 @@ namespace Camoran.Japper.Operation.SqlServer
         public static string LPS = "[";
         public static string RPS = "]";
         public static string On = "on";
+        public static string Join = "join";
+        public static string Equal = "=";
+        public static string NotEqual = "<>";
+        public static string In = "in";
+        public static string NotIn = "NotIn";
+        public static string LessThan = "<";
+        public static string LessThanOrEqual = "<=";
+        public static string MoreThan = ">";
+        public static string MoreThanOrEqual = ">=";
+        public static string And = "and";
+        public static string Or = "or";
+        public static string Where = "where";
+        public static string Order_by = "order by";
+        public static string Group_by= "group by";
     }
 
 }

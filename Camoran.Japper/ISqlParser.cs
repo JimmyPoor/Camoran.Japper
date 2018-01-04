@@ -7,7 +7,7 @@ namespace Camoran.Japper
 
     public interface ISqlParser
     {
-        string ParseToSql(ISqlPhrase[] phrase);
+        string ParseToSql(ISqlPhrase phrase);
     }
 
 }

@@ -7,10 +7,10 @@ namespace Camoran.Japper.Operation
 
     public enum JoinType
     {
-        Inner = 1,
-        Left = 2,
-        Right = 3,
-        Cross = 4
+        Inner,
+        Left ,
+        Right,
+        Cross,
     }
 
 }
